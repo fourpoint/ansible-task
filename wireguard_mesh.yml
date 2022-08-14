@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Update APT repository
+      apt:
+        update_cache: yes
+  roles:
+    - githubixx.ansible_role_wireguard

@@ -1,0 +1,11 @@
+[app]
+192.168.5.10
+
+[proxy]
+192.168.5.2
+
+[monitoring]
+192.168.5.20
+
+[all:vars]
+ansible_user=vagrant
