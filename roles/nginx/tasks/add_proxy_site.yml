@@ -1,0 +1,13 @@
+---
+- name: Copy template
+  template:
+    src: proxy_template.conf.j2
+    dest: /etc/nginx/sites-available/{{ site_name }}.conf
+    mode: 0644
+
+- name: Enable site {{ site_name }}
+  file:
+    src: /etc/nginx/sites-available/{{ site_name }}.conf
+    dest: /etc/nginx/sites-enabled/{{ site_name }}.conf
+    state: link
+  notify: reload nginx
