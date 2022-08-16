@@ -8,8 +8,9 @@ table inet filter {
                 iifname lo accept
                 ip saddr {{ wireguard_subnet }} accept
                 ct state established,related accept
+                icmp type echo-request accept
                 tcp dport 22 accept
-                upd dport {{ wireguard_port }} accept
+                udp dport {{ wireguard_port }} accept
                 {{ optional_rules }}
         }
         chain forward {

@@ -8,8 +8,6 @@
         upgrade: dist
   
   roles:
-    - role: firewall
-      vars:
-        optional_rules: '' # add rules based on host group type
+    - firewall
     - githubixx.ansible_role_wireguard
   
