@@ -8,6 +8,17 @@
         upgrade: dist
   
   roles:
-    - firewall
+    #- firewall
     - githubixx.ansible_role_wireguard
-  
+
+- hosts: monitoring
+  roles:
+    - cloudalchemy.prometheus
+
+- hosts: app
+  roles:
+    - role: cloudalchemy.grafana
+      vars:
+        grafana_security:
+          admin_user: admin
+          admin_password: 123456789
