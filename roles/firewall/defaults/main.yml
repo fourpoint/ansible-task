@@ -1,0 +1,2 @@
+wireguard_subnet: "10.8.0.0/24"
+wireguard_port: 51820

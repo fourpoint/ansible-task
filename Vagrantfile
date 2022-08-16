@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
   boxes = [
     { :name => "app1", :ip => "192.168.5.10" },
     { :name => "www-in", :ip => "192.168.5.2" },
+    { :name => "www-static", :ip => "192.168.5.5" },
     { :name => "prometheus", :ip => "192.168.5.20" }
   ]
 

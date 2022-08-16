@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  pre_tasks:
+    - name: Update & Upgrade APT repository
+      apt:
+        update_cache: yes
+        upgrade: dist
+  
+  roles:
+    - role: firewall
+      vars:
+        optional_rules: '' # add rules based on host group type
+    - githubixx.ansible_role_wireguard
+  
