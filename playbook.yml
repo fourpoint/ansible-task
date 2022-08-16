@@ -10,15 +10,25 @@
   roles:
     #- firewall
     - githubixx.ansible_role_wireguard
+    - cloudalchemy.node_exporter
 
 - hosts: monitoring
   roles:
-    - cloudalchemy.prometheus
-
-- hosts: app
-  roles:
+    - role: cloudalchemy.prometheus
+      vars:
+        prometheus_targets:
+          node:
+          - targets:
+            - localhost:9100
+            - 10.8.0.10:9100
+            - 10.8.0.2:9100
+            - 10.8.0.5:9100
+            labels:
+              env: champ
     - role: cloudalchemy.grafana
       vars:
         grafana_security:
           admin_user: admin
           admin_password: 123456789
+- hosts: proxy
+  #roles: Install nginx
