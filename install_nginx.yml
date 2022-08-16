@@ -1,0 +1,14 @@
+---
+- hosts: monitoring
+  become: yes
+  roles:
+  - cloudalchemy.prometheus
+  vars:
+    prometheus_targets:
+      node:
+      - targets:
+        - localhost:9100
+        - 10.8.0.10:9100
+        - 10.8.0.2:9100
+        labels:
+          env: champ
