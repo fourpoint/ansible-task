@@ -1,7 +1,10 @@
 ---
 
 - include_tasks: install_nginx.yml
-  when: install == yes
+  when: install
+
+- include_tasks: add_site.yml
+  when: add_site
 
 - include_tasks: add_proxy_site.yml
-  when: add_proxy == yes
+  when: add_proxy

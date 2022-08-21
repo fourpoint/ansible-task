@@ -1,0 +1,23 @@
+---
+- hosts: static
+  become: yes
+  pre_tasks:
+  - name: Install 
+    apt: name=rsync state=present
+  roles:
+    - role: nginx
+      vars:
+        install: yes
+        add_site: yes
+        site_name: "my-data.lan"
+        site_path: "/var/www/static"
+
+- hosts: proxy
+  become: yes
+  roles:
+    - role: nginx
+      vars:
+        install: yes
+        add_proxy: yes
+        site_name_proxy: "my-data.lan"
+        upstream_address: "10.8.0.5:80"

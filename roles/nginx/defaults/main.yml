@@ -1,2 +1,13 @@
-install: yes
+# install nginx server
+install: no
+
+#add nginx site
+add_site: no
+site_name: ""
+site_path: "/var/www/html"
+
+
 add_proxy: no
+upstream_address: "http://"
+
+

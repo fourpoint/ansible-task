@@ -5,7 +5,7 @@
     - name: Update & Upgrade APT repository
       apt:
         update_cache: yes
-        upgrade: dist
+        #upgrade: dist
   
   roles:
     #- firewall
@@ -30,5 +30,26 @@
         grafana_security:
           admin_user: admin
           admin_password: 123456789
+
+- hosts: static
+  become: yes
+  pre_tasks:
+  - name: Install 
+    apt: name=rsync state=present
+  roles:
+    - role: nginx
+      vars:
+        install: yes
+        add_site: yes
+        site_name: "my-data.lan"
+        site_path: "/var/www/static"
+
 - hosts: proxy
-  #roles: Install nginx
+  become: yes
+  roles:
+    - role: nginx
+      vars:
+        install: yes
+        add_proxy: yes
+        site_name_proxy: "my-data.lan"
+        upstream_address: "10.8.0.5:80"
