@@ -16,4 +16,4 @@ vagrand destroy
 Vagrand vytváří síť 192.168.5.0/24. Jednotlivé VM spolu komunikují přes wireguard rozhraní wg0 v subnetu 10.8.0.0/24
 
 ## Firewall
-Všechny VM mají přístupná pouze port 22. Vyjímka je reverzní proxy www-in která má otevřené porty 80, 443
+Všechny VM mají přístupný pouze port 22. Vyjímka je reverzní proxy www-in která má otevřené porty 80, 443
