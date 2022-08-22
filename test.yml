@@ -7,17 +7,18 @@
   roles:
     - role: nginx
       vars:
-        install: yes
-        add_site: yes
-        site_name: "my-data.lan"
-        site_path: "/var/www/static"
+        nginx_install: yes
+        nginx_add_site: yes
+        nginx_site_name: "my-data.lan"
+        nginx_site_path: "/var/www/static"
 
 - hosts: proxy
   become: yes
   roles:
     - role: nginx
       vars:
-        install: yes
-        add_proxy: yes
-        site_name_proxy: "my-data.lan"
-        upstream_address: "10.8.0.5:80"
+        nginx_install: yes
+        nginx_add_proxy: yes
+        nginx_static_cache: yes
+        nginx_site_name_proxy: "my-data.lan"
+        nginx_upstream_address: "10.8.0.5:80"

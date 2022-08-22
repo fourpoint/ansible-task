@@ -2,18 +2,10 @@
 - name: Install Nginx
   apt: name=nginx state=present
 
-- name: Add log format
-  lineinfile:
-    path: /etc/nginx/nginx.conf
-    line: log_format main '$http_x_forwarded_for - $remote_user [$time_local] "$host" "$request" '
-                  '$status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" $request_time';
-    insertbefore: access_log /var/log/nginx/access.log;
-
-- name: Change log format
-  lineinfile:
-    path: /etc/nginx/nginx.conf
-    regexp: '^\s+access_log'
-    line: access_log /var/log/nginx/access.log main;
-    state: present
-    backrefs: yes
+- name: Copy main config file
+  template:
+    src: nginx.conf.j2
+    dest: "/etc/nginx/nginx.conf"
+    mode: 0644
+    validate: "nginx -t"
+  notify: reload nginx

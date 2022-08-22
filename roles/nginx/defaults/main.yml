@@ -1,13 +1,13 @@
 # install nginx server
-install: no
+nginx_install: no
 
 #add nginx site
-add_site: no
-site_name: ""
-site_path: "/var/www/html"
+nginx_add_site: no
+nginx_site_name: ""
+nginx_site_path: "/var/www/html"
 
 
-add_proxy: no
-upstream_address: "http://"
-
+nginx_add_proxy: no
+nginx_upstream_address: "http://"
+nginx_static_cache: no
 

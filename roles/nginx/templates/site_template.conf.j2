@@ -1,10 +1,10 @@
 server {
         listen 80;
 
-        root {{ site_path }};
+        root {{ nginx_site_path }};
         index index.html index.htm;
 
-        server_name {{ site_name }};
+        server_name {{ nginx_site_name }};
 
         location / {
                 autoindex on;

@@ -2,17 +2,17 @@
 - name: Copy template
   template:
     src: site_template.conf.j2
-    dest: "/etc/nginx/sites-available/{{ site_name }}.conf"
+    dest: "/etc/nginx/sites-available/{{ nginx_site_name }}.conf"
     mode: 0644
 
-- name: Enable site {{ site_name }}
+- name: Enable site {{ nginx_site_name }}
   file:
-    src: "/etc/nginx/sites-available/{{ site_name }}.conf"
-    dest: "/etc/nginx/sites-enabled/{{ site_name }}.conf"
+    src: "/etc/nginx/sites-available/{{ nginx_site_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ nginx_site_name }}.conf"
     state: link
   notify: reload nginx
 
 - name: Copy content
   synchronize:
     src: "files/site_content/"
-    dest: "{{ site_path }}"
+    dest: "{{ nginx_site_path }}"

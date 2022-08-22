@@ -1,10 +1,10 @@
 ---
 
 - include_tasks: install_nginx.yml
-  when: install
+  when: nginx_install
 
 - include_tasks: add_site.yml
-  when: add_site
+  when: nginx_add_site
 
 - include_tasks: add_proxy_site.yml
-  when: add_proxy
+  when: nginx_add_proxy
