@@ -3,10 +3,9 @@ server_name {{ nginx_site_name_proxy }};
 set $upstream {{ nginx_upstream_address }};
 
 {% if nginx_static_cache %}
-proxy_cache_path /var/cache/nginx/{{ nginx_site_name_proxy }} levels=1:2 keys_zone={{ nginx_site_name_proxy }}:10m max_size=4g inactive=60m use_temp_path=off;
 
 location ~* \.(?:jpg|jpeg|gif|png|ico|woff2|css|js)$ {
-	proxy_cache {{ nginx_site_name_proxy }};
+	proxy_cache all;
 	proxy_pass http://$upstream;
 	proxy_ssl_verify off;
 	include proxy_params;

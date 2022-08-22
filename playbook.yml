@@ -5,7 +5,7 @@
     - name: Update & Upgrade APT repository
       apt:
         update_cache: yes
-        #upgrade: dist
+        upgrade: dist
   
   roles:
     #- firewall

@@ -5,15 +5,6 @@
     dest: /etc/nginx/sites-available/{{ nginx_site_name_proxy }}.conf
     mode: 0644
 
-- name: Create cache folder
-  file:
-    path: /var/cache/nginx/{{ nginx_site_name_proxy }}
-    state: directory
-    owner: www-data
-    group: www-data
-    mode: 0775
-  when: nginx_static_cache
-
 - name: Enable site {{ site_name_proxy }}
   file:
     src: /etc/nginx/sites-available/{{ nginx_site_name_proxy }}.conf

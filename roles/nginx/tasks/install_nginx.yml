@@ -2,10 +2,19 @@
 - name: Install Nginx
   apt: name=nginx state=present
 
+- name: Create cache folder
+  file:
+    path: /var/cache/nginx
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0775
+  when: nginx_add_proxy
+
 - name: Copy main config file
   template:
     src: nginx.conf.j2
     dest: "/etc/nginx/nginx.conf"
     mode: 0644
-    validate: "nginx -t"
+    validate: "nginx -t -c %s"
   notify: reload nginx
