@@ -37,5 +37,6 @@
       vars:
         nginx_install: yes
         nginx_add_proxy: yes
+        nginx_static_cache: yes
         nginx_site_name_proxy: "my-data.lan"
         nginx_upstream_address: "10.8.0.5:80"
