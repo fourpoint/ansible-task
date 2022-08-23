@@ -1,0 +1,13 @@
+---
+- name: Ensure Ceph dependencies are installed
+  ansible.builtin.package:
+    name:
+      - podman
+      - lvm2
+    state: present
+
+- name: Copy the ceph pubkey to nodes
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', 'files/ceph.pub') }}"

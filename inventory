@@ -1,14 +1,26 @@
 [app]
-192.168.5.10
+app ansible_host=192.168.5.10
 
 [proxy]
-192.168.5.2
+www-in ansible_host=192.168.5.2
 
 [monitoring]
-192.168.5.20
+prometheus ansible_host=192.168.5.20
 
 [static]
-192.168.5.5
+www-static ansible_host=192.168.5.5
+
+[ceph-admin]
+ceph-adm ansible_host=192.168.5.30
+
+[ceph-node]
+ceph-node1 ansible_host=192.168.5.31
+ceph-node2 ansible_host=192.168.5.32
+ceph-node3 ansible_host=192.168.5.33
+
+[ceph:children]
+ceph-admin
+ceph-node
 
 [all:vars]
 ansible_user=vagrant

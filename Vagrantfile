@@ -22,7 +22,11 @@ Vagrant.configure("2") do |config|
     { :name => "app1", :ip => "192.168.5.10" },
     { :name => "www-in", :ip => "192.168.5.2" },
     { :name => "www-static", :ip => "192.168.5.5" },
-    { :name => "prometheus", :ip => "192.168.5.20" }
+    { :name => "prometheus", :ip => "192.168.5.20" },
+    { :name => "ceph-adm", :ip => "192.168.5.30" },
+    { :name => "ceph-node1", :ip => "192.168.5.31" },
+    { :name => "ceph-node2", :ip => "192.168.5.32" },
+    { :name => "ceph-node3", :ip => "192.168.5.33" }
   ]
 
   boxes.each do |opts|

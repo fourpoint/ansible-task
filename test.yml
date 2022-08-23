@@ -1,24 +1,13 @@
 ---
-- hosts: static
+- hosts: ceph
   become: yes
   pre_tasks:
-  - name: Install 
-    apt: name=rsync state=present
-  roles:
-    - role: nginx
-      vars:
-        nginx_install: yes
-        nginx_add_site: yes
-        nginx_site_name: "my-data.lan"
-        nginx_site_path: "/var/www/static"
+    - name: Update & Upgrade APT repository
+      apt:
+        update_cache: yes
+    - name: test
+      debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
 
-- hosts: proxy
-  become: yes
   roles:
-    - role: nginx
-      vars:
-        nginx_install: yes
-        nginx_add_proxy: yes
-        nginx_static_cache: yes
-        nginx_site_name_proxy: "my-data.lan"
-        nginx_upstream_address: "10.8.0.5:80"
+    - githubixx.ansible_role_wireguard
+    - ceph

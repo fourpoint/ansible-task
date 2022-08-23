@@ -1,0 +1,37 @@
+---
+- name: Install Ceph dependencies
+  ansible.builtin.package:
+    name:
+      - podman
+      - lvm2
+      - libcephfs2
+      - nfs-ganesha
+      - nfs-ganesha-ceph
+    state: present
+
+- name: Download cephadm
+  ansible.builtin.get_url:
+    url: https://github.com/ceph/ceph/raw/quincy/src/cephadm/cephadm
+    dest: /root/cephadm
+    mode: '0770'
+
+- name: Add Ceph Repo
+  ansible.builtin.shell: /root/cephadm add-repo --release quincy
+
+- name: Install cephadm
+  ansible.builtin.shell: /root/cephadm install
+
+- name: Copy config file
+  template:
+    src: ceph.conf.j2
+    dest: "/root/ceph.conf"
+    mode: 0644
+
+- name: Create Ceph Cluster
+  ansible.builtin.shell: "cephadm bootstrap -c /root/ceph.conf --mon-ip {{ public_address }}"
+
+- name: Get the ceph pubkey
+  ansible.builtin.fetch:
+    src: /etc/ceph/ceph.pub
+    dest: files/ceph.pub
+    flat: yes

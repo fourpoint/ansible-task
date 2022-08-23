@@ -1,0 +1,21 @@
+---
+
+- name: Upgrade all software.
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: dist
+
+- include_tasks: ceph_install_admin.yml
+  when: ceph_admin
+
+- include_tasks: ceph_install_node.yml
+  when: ceph_node
+
+- name: Add nodes to cluster
+  ansible.builtin.debug:
+    msg: ceph orch host add {{ item.name }} {{ item.ip }}
+  delegate_to: ceph-admin
+  loop:
+    - { name: 'node1', ip: '10.8.0.31'} # TODO: list IPs from inventory file
+    - { name: 'node2', ip: '10.8.0.32'}
+    - { name: 'node3', ip: '10.8.0.33'}

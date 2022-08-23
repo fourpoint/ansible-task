@@ -1,0 +1,6 @@
+ceph_admin: no
+
+ceph_node: no
+
+public_network: 192.168.5.0/24
+cluster_network: 10.8.0.0/24

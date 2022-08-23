@@ -40,3 +40,8 @@
         nginx_static_cache: yes
         nginx_site_name_proxy: "my-data.lan"
         nginx_upstream_address: "10.8.0.5:80"
+
+- hosts: ceph
+  become: yes
+  roles:
+    - ceph
