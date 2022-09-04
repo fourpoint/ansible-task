@@ -6,7 +6,8 @@
       apt:
         update_cache: yes
         upgrade: dist
-  
+    - name: test
+      debug: var={{wireguard_address}}
   roles:
     #- firewall
     - githubixx.ansible_role_wireguard
@@ -41,7 +42,7 @@
         nginx_site_name_proxy: "my-data.lan"
         nginx_upstream_address: "10.8.0.5:80"
 
-- hosts: ceph
-  become: yes
-  roles:
-    - ceph
+# - hosts: ceph
+#   become: yes
+#   roles:
+#     - ceph

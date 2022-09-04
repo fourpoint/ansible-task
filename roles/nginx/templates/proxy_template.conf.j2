@@ -1,12 +1,19 @@
+upstream upstream_server {
+  keepalive 10;
+
+  server {{ nginx_upstream_address }};
+  
+}
+
+
 server {
 server_name {{ nginx_site_name_proxy }};
-set $upstream {{ nginx_upstream_address }};
 
 {% if nginx_static_cache %}
 
 location ~* \.(?:jpg|jpeg|gif|png|ico|woff2|css|js)$ {
 	proxy_cache all;
-	proxy_pass http://$upstream;
+	proxy_pass http://upstream_server;
 	proxy_ssl_verify off;
 	include proxy_params;
 	add_header X-Cache-Status $upstream_cache_status;
